@@ -1,0 +1,27 @@
+{
+  "name": "Piscine_MERN_Jour_04",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.epitech.eu:/morgane.van-glabeke@epitech.eu/Piscine_MERN_Jour_04"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "create-react-app": "^3.3.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "jwt-simple": "^0.5.6",
+    "mongodb": "^3.3.5",
+    "mongoose": "^5.7.13",
+    "password-hash": "^1.2.2"
+  }
+}
