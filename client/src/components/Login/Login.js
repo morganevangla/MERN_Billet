@@ -11,8 +11,8 @@ export class Login extends React.Component {
 
 
     this.state = {
-      login: [],
-      password: []
+      login: "",
+      password: ""
     }
   }
 
@@ -26,8 +26,9 @@ export class Login extends React.Component {
       return;
     }
     try {
-      const  data  = await API.login(login, password);
-      localStorage.setItem("token", data.token);
+      const  {data}  = await API.login(login, password);
+      const token = data.token
+      localStorage.setItem("token", JSON.stringify(token));
       window.location = "/dashboard";
     } catch (error) {
       console.error(error);
@@ -37,32 +38,40 @@ export class Login extends React.Component {
   };
 
   handleChange = (event) => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-          console.log(event.target.id)
+    // this.setState({
+    //   [event.target.id]: event.target.value
+    // });
+
+    (async () => {
+      try {
+          this.setState({data: await this.login()});
+      } catch (e) {
+        console.error(error);
+      }
+  })
+         
 };
 
 
 
   render() {
-    // const { login, password } = this.state;
+    const { login, password } = this.state;
     return (
       <div className="Login">
-        <FormGroup controlId="login">
+        <FormGroup controlId="login" >
           <FormLabel>Login</FormLabel>
           <FormControl
             autoFocus
             type="text"
             name="login"
-            value={this.state.login}
+            value={login}
             onChange={this.handleChange}
           />
         </FormGroup>
         <FormGroup controlId="password">
           <FormLabel>Password</FormLabel>
           <FormControl
-            value={this.state.password}
+            value={password}
             onChange={this.handleChange}
             type="password"
             name="password"

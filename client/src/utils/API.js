@@ -4,6 +4,7 @@ const headers = {
 };
 const burl = "http://localhost:4242";
 
+
 export default {
 
 
@@ -14,8 +15,8 @@ export default {
     return axios.post(
       `${burl}/user/login`,
       {
-        login,
-        password
+        login ,
+        password 
       }
     )
     .then(res => console.log(res.data));
