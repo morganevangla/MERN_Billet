@@ -4,11 +4,13 @@ import API from "../../utils/API";
 
 export class Signup extends React.Component {
   state = {
-      login: "",
-    email: "",
-    password: "",
-    cpassword: ""
+      login: [],
+    email: [],
+    password: [],
+    cpassword: []
   };
+
+  
   send = async () => {
     const { login, email, password, cpassword } = this.state;
     if (!email || email.length === 0) return;

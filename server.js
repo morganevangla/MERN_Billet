@@ -3,6 +3,8 @@
 const express = require("express"); 
 const mongoose = require("mongoose"); 
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
 const options = {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -27,6 +29,8 @@ const app = express();
 const urlencodedParser = bodyParser.urlencoded({
     extended: true
 });
+
+app.use(cors());
 app.use(urlencodedParser);
 app.use(bodyParser.json());
 
@@ -38,7 +42,6 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
-
 //Définition du routeur
 const router = express.Router();
 app.use("/user", router);

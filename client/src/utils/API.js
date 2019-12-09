@@ -6,20 +6,23 @@ const burl = "http://localhost:4242";
 
 export default {
 
+
+
   login: function(login, password) {
+
+    
     return axios.post(
       `${burl}/user/login`,
       {
         login,
         password
-      },
-      {
-        headers: headers
       }
-    );
+    )
+    .then(res => console.log(res.data));
   },
   signup: function(send) {
-    return axios.post(`${burl}/user/signup`, send, { headers: headers });
+    return axios.post(`${burl}/user/signup`, send, { headers: headers })
+    .then(res => console.log(res.data));
   },
 
   isAuth: function() {

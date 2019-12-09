@@ -3,12 +3,22 @@ import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import API from "../../utils/API";
 
 export class Login extends React.Component {
-  state = {
-    login: "",
-    password: ""
-  };
+
+
+
+  constructor(props) {
+    super(props);
+
+
+    this.state = {
+      login: [],
+      password: []
+    }
+  }
+
   send = async () => {
     const { login, password } = this.state;
+
     if (!login || login.length === 0) {
       return;
     }
@@ -16,20 +26,27 @@ export class Login extends React.Component {
       return;
     }
     try {
-      const { data } = await API.login(login, password);
+      const  data  = await API.login(login, password);
       localStorage.setItem("token", data.token);
       window.location = "/dashboard";
     } catch (error) {
       console.error(error);
+      console.log(JSON.stringify(error));
+
     }
   };
+
   handleChange = (event) => {
     this.setState({
       [event.target.id]: event.target.value
     });
-  };
+          console.log(event.target.id)
+};
+
+
+
   render() {
-    const { login, password } = this.state;
+    // const { login, password } = this.state;
     return (
       <div className="Login">
         <FormGroup controlId="login">
@@ -38,14 +55,14 @@ export class Login extends React.Component {
             autoFocus
             type="text"
             name="login"
-            value={login}
+            value={this.state.login}
             onChange={this.handleChange}
           />
         </FormGroup>
         <FormGroup controlId="password">
           <FormLabel>Password</FormLabel>
           <FormControl
-            value={password}
+            value={this.state.password}
             onChange={this.handleChange}
             type="password"
             name="password"
