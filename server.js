@@ -1,52 +1,29 @@
+var express = require("express")
+var cors = require("cors")
+var bodyParser = require("body-parser")
+var app = express()
+var mongoose = require("mongoose")
+var port = process.env.PORT || 4242
 
-//Définition des modules
-const express = require("express"); 
-const mongoose = require("mongoose"); 
-const bodyParser = require('body-parser');
-const cors = require('cors');
+app.use(bodyParser.json())
+app.use(cors())
+app.use(
+    bodyParser.urlencoded({
+        extended: false
+    })
+)
 
-const options = {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true
-};
+const mongoURI = 'mongodb://localhost:27042/mern4'
 
-//Connexion à la base de donnée
 mongoose
-  .connect("mongodb://127.0.0.1:27042/myblog", options )
-  .then(() => {
-    console.log("Connected to mongoDB");
-  })
-  .catch((e) => {
-    console.log("Error while DB connecting");
-    console.log(e);
-});
+.connect(mongoURI, {useNewUrlParser: true})
+.then(()=> console.log("mongoDB connexion OK"))
+.catch(err => console.log(err))
 
-//On définit notre objet express nommé app
-const app = express();
+var Users = require('./routes/Users')
 
-//Body Parser
-const urlencodedParser = bodyParser.urlencoded({
-    extended: true
-});
+app.use('/users', Users)
 
-app.use(cors());
-app.use(urlencodedParser);
-app.use(bodyParser.json());
-
-//Définition des CORS
-app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
-});
-//Définition du routeur
-const router = express.Router();
-app.use("/user", router);
-require(__dirname + "/controllers/userController")(router);
-
-//Définition et mise en place du port d'écoute
-const port = 4242;
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, () =>{
+    console.log("Serveur en place sur le port : "+ port)
+})

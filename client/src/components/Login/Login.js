@@ -38,17 +38,9 @@ export class Login extends React.Component {
   };
 
   handleChange = (event) => {
-    // this.setState({
-    //   [event.target.id]: event.target.value
-    // });
-
-    (async () => {
-      try {
-          this.setState({data: await this.login()});
-      } catch (e) {
-        console.error(error);
-      }
-  })
+    this.setState({
+      [event.target.id]: event.target.value
+    });
          
 };
 
