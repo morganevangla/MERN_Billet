@@ -1,13 +1,9 @@
 const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const billetRoutes = express.Router();
 
-let Billet = require('../models/Billet');
-
-billetRoutes.use(cors());
-billetRoutes.use(bodyParser.json());
+const Billet = require('../models/Billet');
+billetRoutes.use(cors())
 
 billetRoutes.route('/').get(function(req, res) {
     Billet.find(function(err, billets) {

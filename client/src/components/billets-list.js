@@ -10,7 +10,7 @@ const Billet = props => (
         <td>{props.billet.billet_content}</td>
         <td>{props.billet.date}</td>
         <td>
-            <Link to={"/edit/"+props.billet._id}>Edit</Link>
+            <Link to={"/edit/" + props.billet._id}>Edit</Link>
         </td>
     </tr>
 )
@@ -19,23 +19,26 @@ export default class BilletsList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {billets: []};
+        this.state = { billets: [] };
     }
 
     componentDidMount() {
-        axios.get('billets', { validateStatus: false })
+        axios.get('billets/', { validateStatus: false })
             .then(response => {
                 this.setState({ billets: response.data });
             })
-            .catch(function (error){
+            .catch(function (error) {
                 console.log(error);
             })
     }
 
     billetList() {
-        return this.state.billet && this.state.billets.map( function(currentBillet, i){
-            return <Billet billet={currentBillet} key={i} />;
-        })
+        if (this.state.billets) {
+            return this.state.billets.map(function (currentBillet, i) {
+                return <Billet billet={currentBillet} key={i} />;
+            })
+        }
+        return;
     }
 
     render() {
@@ -51,7 +54,7 @@ export default class BilletsList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.billetList() }
+                        {this.billetList()}
                     </tbody>
                 </table>
             </div>

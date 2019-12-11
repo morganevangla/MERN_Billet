@@ -25,11 +25,15 @@ mongoose
 .then(()=> console.log("mongoDB connexion OK"))
 .catch(err => console.log(err))
 
-var Users = require('./routes/Users')
-var Billets = require('./routes/Billets')
+const router = express.Router();
+router.use('/users', require('./routes/Users'))
+router.use('/billets', require('./routes/Billets'))
 
-app.use('/users', Users);
-app.use('/Billets', Billets);
+// var Users = require('./routes/Users')
+// var Billets = require('./routes/Billets')
+
+// app.use('/users', Users);
+app.use(router);
 
 app.listen(port, () =>{
     console.log("Serveur en place sur le port : "+ port)
