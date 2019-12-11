@@ -88,10 +88,11 @@ users.get('/profile', (req, res) => {
             _id: decoded._id
         })
         .then(user => {
-            if (user) {
-                res.json(user)
-            } else {
+            if (!user) {
                 res.send("L'utilisateur n'existe pas")
+                
+            } else {
+                res.json(user)
             }
         })
         .catch(err => {
