@@ -32,6 +32,16 @@ class Navbar extends Component {
                     </Link>
                 </li>
                 <li className="nav-item">
+                    <Link to="/createbillet" className="nav-link">
+                        créer un billet
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link to="/billet" className="nav-link">
+                        Billets
+                    </Link>
+                </li>
+                <li className="nav-item">
                     <Link to="/"onClick={this.logOut.bind(this)} className="nav-link">
                         Déconnexion
                     </Link>

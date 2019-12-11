@@ -26,8 +26,10 @@ mongoose
 .catch(err => console.log(err))
 
 var Users = require('./routes/Users')
+var Billets = require('./routes/Billets')
 
-app.use('/users', Users)
+app.use('/users', Users);
+app.use('/Billets', Billets);
 
 app.listen(port, () =>{
     console.log("Serveur en place sur le port : "+ port)

@@ -6,8 +6,11 @@ import Landing from './components/Landing'
 import Login from './components/Login'
 import Register from './components/Register'
 import Profile from './components/Profile'
+import BilletsList from './components/billets-list'
+import CreateBillet from './components/create-billet'
 
 class App extends  Component{
+
   render(){
   return (
     <Router>
@@ -18,6 +21,8 @@ class App extends  Component{
           <Route exact path="/register" component={Register}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/profile" component={Profile}/>
+          <Route exact path="/billet" component={BilletsList} />
+          <Route exact path="/createbillet" component={CreateBillet} />
         </div>
       </div>
     </Router>
