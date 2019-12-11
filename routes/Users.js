@@ -33,7 +33,7 @@ users.post('/register', (req, res) => {
                                 status: user.login + 'Utilisateur enregistré !'
                             })
                         })
-                        .catch(errn => {
+                        .catch(err => {
                             res.send('Erreur : ' + err)
                         })
                 })
